@@ -54,12 +54,16 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: 'Something went wrong on the server' });
 });
 
-app.listen(PORT, () => {
-  const adminId = process.env.ADMIN_ID || process.env.ADMIN_USERNAME || 'admin';
-  console.log(`API running on http://localhost:${PORT}`);
-  console.log(`Timetable:       http://localhost:${PORT}/timetable`);
-  console.log(`Resources:       http://localhost:${PORT}/resources`);
-  console.log(`Societies:       http://localhost:${PORT}/societies`);
-  console.log(`Admin Portal:    http://localhost:${PORT}/admin`);
-  console.log(`Admin Login:     ID="${adminId}" (Password configured in .env)`);
-});
+if (!process.env.VERCEL) {
+  app.listen(PORT, () => {
+    const adminId = process.env.ADMIN_ID || process.env.ADMIN_USERNAME || 'admin';
+    console.log(`API running on http://localhost:${PORT}`);
+    console.log(`Timetable:       http://localhost:${PORT}/timetable`);
+    console.log(`Resources:       http://localhost:${PORT}/resources`);
+    console.log(`Societies:       http://localhost:${PORT}/societies`);
+    console.log(`Admin Portal:    http://localhost:${PORT}/admin`);
+    console.log(`Admin Login:     ID="${adminId}" (Password configured in .env)`);
+  });
+}
+
+module.exports = app;

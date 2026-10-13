@@ -6,6 +6,8 @@
   "scripts": {
     "start": "node src/server.js",
     "dev": "node --watch src/server.js",
+    "build": "npm rebuild better-sqlite3",
+    "postinstall": "npm rebuild better-sqlite3",
     "seed": "node scripts/seed.js",
     "seed:societies": "node scripts/seed-societies.js",
     "sync": "node scripts/sync-drive.js",
@@ -20,5 +22,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.21.0",
     "multer": "^2.4.0"
+  },
+  "allowScripts": {
+    "better-sqlite3": true,
+    "better-sqlite3@11.10.0": true
   }
 }

@@ -8,7 +8,13 @@
     "start": "node start.js",
     "backend": "npm --prefix \"uni fold backend\" run dev",
     "frontend": "npm --prefix \"uni fold frontend\" run dev",
-    "build:frontend": "npm --prefix \"uni fold frontend\" run build"
+    "build:backend": "npm --prefix \"uni fold backend\" run build",
+    "build:frontend": "npm --prefix \"uni fold frontend\" run build",
+    "build": "npm --prefix \"uni fold backend\" install && npm --prefix \"uni fold backend\" run build && npm --prefix \"uni fold frontend\" install && npm --prefix \"uni fold frontend\" run build"
+  },
+  "allowScripts": {
+    "better-sqlite3": true,
+    "better-sqlite3@11.10.0": true
   },
   "keywords": ["university", "resources", "timetable", "societies", "react", "express"],
   "author": "",

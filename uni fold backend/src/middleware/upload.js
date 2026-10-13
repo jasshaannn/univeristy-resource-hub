@@ -1,8 +1,12 @@
 const path = require('path');
+const fs = require('fs');
 const crypto = require('crypto');
 const multer = require('multer');
 
-const UPLOAD_DIR = path.join(__dirname, '..', '..', 'uploads');
+const UPLOAD_DIR = process.env.VERCEL
+  ? path.join('/tmp', 'uploads')
+  : path.join(__dirname, '..', '..', 'uploads');
+fs.mkdirSync(UPLOAD_DIR, { recursive: true });
 
 const EXT_TO_TYPE = {
   '.pdf': 'pdf',

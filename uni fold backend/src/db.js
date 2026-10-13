@@ -2,10 +2,23 @@ const path = require('path');
 const fs = require('fs');
 const Database = require('better-sqlite3');
 
-const dataDir = path.join(__dirname, '..', 'data');
+const isVercel = !!process.env.VERCEL;
+const baseDataDir = path.join(__dirname, '..', 'data');
+const dataDir = isVercel ? '/tmp/uni-data' : baseDataDir;
 fs.mkdirSync(dataDir, { recursive: true });
 
-const db = new Database(path.join(dataDir, 'resources.db'));
+const bundledDb = path.join(baseDataDir, 'resources.db');
+const activeDb = path.join(dataDir, 'resources.db');
+
+if (isVercel && fs.existsSync(bundledDb) && !fs.existsSync(activeDb)) {
+  try {
+    fs.copyFileSync(bundledDb, activeDb);
+  } catch (e) {
+    console.warn('Could not copy bundled DB to /tmp:', e.message);
+  }
+}
+
+const db = new Database(activeDb);
 db.pragma('journal_mode = WAL');
 db.pragma('foreign_keys = ON');
 
