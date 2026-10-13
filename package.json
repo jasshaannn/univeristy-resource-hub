@@ -1,0 +1,16 @@
+{
+  "name": "university-resource-hub",
+  "version": "1.0.0",
+  "description": "University Resource Hub - Unified Fullstack Application",
+  "main": "start.js",
+  "scripts": {
+    "dev": "node start.js",
+    "start": "node start.js",
+    "backend": "npm --prefix \"uni fold backend\" run dev",
+    "frontend": "npm --prefix \"uni fold frontend\" run dev",
+    "build:frontend": "npm --prefix \"uni fold frontend\" run build"
+  },
+  "keywords": ["university", "resources", "timetable", "societies", "react", "express"],
+  "author": "",
+  "license": "ISC"
+}

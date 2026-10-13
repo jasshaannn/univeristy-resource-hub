@@ -1,0 +1,55 @@
+# ==========================================
+# Root .gitignore for University Resource Hub
+# Prevents any sensitive files, passwords,
+# .env credentials, or databases from leaking
+# ==========================================
+
+# Dependencies
+node_modules/
+*/node_modules/
+
+# Environment Variables & Secrets (CRITICAL)
+.env
+.env.*
+!.env.example
+*/**/.env
+*/**/.env.*
+!*/**/.env.example
+*.env.local
+*/**/*.env.local
+
+# SQLite Database files (Dynamic data & Admin credentials)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+*/**/*.db
+*/**/*.db-shm
+*/**/*.db-wal
+*.sqlite
+
+# Uploaded files
+uploads/*
+!uploads/.gitkeep
+*/**/uploads/*
+!*/**/uploads/.gitkeep
+
+# Build outputs
+dist/
+dist-ssr/
+*/**/dist/
+*/**/dist-ssr/
+
+# Operating System & IDE
+.DS_Store
+*/.DS_Store
+.idea/
+.vscode/*
+!.vscode/extensions.json
+.vercel/
+*/**/.vercel/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

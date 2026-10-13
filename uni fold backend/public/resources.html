@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>University Resources & Folders | Campus Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(22, 28, 45, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #3b82f6;
+      --accent-gradient: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+      --folder-gradient: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+      --pdf-color: #ef4444;
+      --ppt-color: #f97316;
+      --notes-color: #10b981;
+      --tag-bg: rgba(255, 255, 255, 0.06);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(at 0% 0%, rgba(59, 130, 246, 0.12) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(139, 92, 246, 0.1) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 1.5rem 1.25rem 4rem;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    /* Navigation Bar */
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    /* Page Header */
+    header {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .badge-hub {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(59, 130, 246, 0.15);
+      color: #93c5fd;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.85rem;
+    }
+
+    h1 {
+      font-size: clamp(1.85rem, 5vw, 2.5rem);
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.5rem;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+      max-width: 680px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* Stats Banner */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 2rem;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 14px 18px;
+      text-align: center;
+      backdrop-filter: blur(10px);
+    }
+
+    .stat-card b {
+      display: block;
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .stat-card span {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Search & Filters */
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-wrap {
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 0.85rem 1.25rem 0.85rem 3rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 20px;
+      height: 20px;
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .pill-btn {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.45rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .pill-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .pill-btn.active {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: #fff;
+    }
+
+    /* Section Subheadings */
+    .section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .section-head h2 {
+      font-size: 1.2rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Folders Grid */
+    .folder-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .folder-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.15rem;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      backdrop-filter: blur(10px);
+    }
+
+    .folder-card:hover, .folder-card.selected {
+      transform: translateY(-2px);
+      border-color: rgba(59, 130, 246, 0.4);
+      background: rgba(30, 41, 65, 0.85);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .folder-card.selected {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
+    }
+
+    .folder-icon {
+      font-size: 32px;
+      flex-shrink: 0;
+    }
+
+    .folder-info {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .folder-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .folder-meta {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+      display: flex;
+      gap: 8px;
+    }
+
+    /* Files Grid */
+    .files-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+    }
+
+    .file-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      backdrop-filter: blur(10px);
+      transition: all 0.2s ease;
+    }
+
+    .file-card:hover {
+      transform: translateY(-2px);
+      border-color: rgba(255, 255, 255, 0.16);
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .file-top {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+    }
+
+    .file-type-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 11px;
+      text-transform: uppercase;
+      flex-shrink: 0;
+      letter-spacing: 0.05em;
+    }
+
+    .file-type-badge.pdf { background: rgba(239, 68, 68, 0.15); color: #f87171; border: 1px solid rgba(239, 68, 68, 0.3); }
+    .file-type-badge.ppt { background: rgba(249, 115, 22, 0.15); color: #fb923c; border: 1px solid rgba(249, 115, 22, 0.3); }
+    .file-type-badge.notes { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .file-type-badge.other { background: rgba(148, 163, 184, 0.15); color: #cbd5e1; border: 1px solid rgba(148, 163, 184, 0.3); }
+
+    .file-details {
+      flex: 1;
+      overflow: hidden;
+    }
+
+    .file-name {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .file-subject {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
+    .file-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: auto;
+      padding-top: 6px;
+    }
+
+    .file-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 0.55rem 0.8rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.15s ease;
+      border: 1px solid transparent;
+    }
+
+    .file-btn.primary {
+      background: var(--accent-gradient);
+      color: #fff;
+    }
+
+    .file-btn.primary:hover {
+      opacity: 0.92;
+    }
+
+    .file-btn.outline {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--card-border);
+      color: var(--text);
+    }
+
+    .file-btn.outline:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 3rem 1rem;
+      color: var(--text-muted);
+    }
+
+    .empty-icon {
+      font-size: 42px;
+      margin-bottom: 8px;
+    }
+
+    /* Responsive Breakpoints */
+    @media (max-width: 768px) {
+      body { padding: 1.25rem 1rem 3rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.75rem; margin-bottom: 1.5rem; }
+      .nav-brand { justify-content: center; }
+      .nav-links { justify-content: center; }
+      .folder-grid { grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); }
+      .search-input { font-size: 16px; } /* Prevents iOS auto-zoom */
+    }
+
+    @media (max-width: 580px) {
+      .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+      .folder-grid { grid-template-columns: 1fr; }
+      .files-grid { grid-template-columns: 1fr; }
+      .file-actions { flex-direction: column; }
+      .file-btn { min-height: 42px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav class="nav-bar">
+      <a href="/timetable" class="nav-brand">
+        🏛️ University Resource Hub
+      </a>
+      <div class="nav-links">
+        <a href="/timetable" class="nav-link">Timetable</a>
+        <a href="/resources" class="nav-link active">Resources</a>
+        <a href="/societies" class="nav-link">Societies</a>
+        <a href="/admin" class="nav-link">Admin</a>
+      </div>
+    </nav>
+
+    <header>
+      <div class="badge-hub">
+        📁 Central University Resource Folders
+      </div>
+      <h1>Academic Resource Hub</h1>
+      <p class="subtitle">
+        Year-wise syllabus notes, past question papers, lecture PPTs, and reference materials. Browse folders below or search directly.
+      </p>
+    </header>
+
+    <!-- Stats Overview -->
+    <div class="stats-grid" id="statsGrid">
+      <div class="stat-card"><b id="statSubjects">-</b><span>Subjects</span></div>
+      <div class="stat-card"><b id="statFiles">-</b><span>Total Files</span></div>
+      <div class="stat-card"><b id="statPdfs">-</b><span>PDFs</span></div>
+      <div class="stat-card"><b id="statPpts">-</b><span>PPTs</span></div>
+      <div class="stat-card"><b id="statNotes">-</b><span>Notes</span></div>
+      <div class="stat-card"><b id="statDownloads">-</b><span>Downloads</span></div>
+    </div>
+
+    <!-- Search & Filters -->
+    <div class="controls">
+      <div class="search-wrap">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search notes, subjects, or PDFs (e.g. chemistry, UTA018, data structure)..." autocomplete="off">
+      </div>
+
+      <div class="filter-pills" id="yearPills">
+        <button class="pill-btn active" data-year="">All Years</button>
+        <button class="pill-btn" data-year="1">1st Year</button>
+        <button class="pill-btn" data-year="2">2nd Year</button>
+        <button class="pill-btn" data-year="3">3rd Year</button>
+        <button class="pill-btn" data-year="4">4th Year</button>
+      </div>
+
+      <div class="filter-pills" id="typePills">
+        <button class="pill-btn active" data-type="">All Types</button>
+        <button class="pill-btn" data-type="pdf">📄 PDFs</button>
+        <button class="pill-btn" data-type="ppt">📊 PPTs</button>
+        <button class="pill-btn" data-type="notes">📝 Notes</button>
+      </div>
+    </div>
+
+    <!-- Subject Folders Section -->
+    <div class="section-head">
+      <h2>📂 Subject Folders (<span id="folderCount">0</span>)</h2>
+      <span style="font-size:0.85rem; color:var(--text-muted);" id="activeFolderFilterText">Showing all subjects</span>
+    </div>
+    <div class="folder-grid" id="folderGrid"></div>
+
+    <!-- Resource Files Section -->
+    <div class="section-head">
+      <h2>📄 Resource Files (<span id="filesCount">0</span>)</h2>
+      <span style="font-size:0.85rem; color:var(--text-muted);" id="activeFilterBadge">All uploaded documents</span>
+    </div>
+    <div class="files-grid" id="filesGrid"></div>
+  </div>
+
+  <script>
+    const $ = (s) => document.querySelector(s);
+    let allSubjects = [];
+    let allResources = [];
+    let selectedYear = '';
+    let selectedType = '';
+    let selectedSubjectId = null;
+    let searchQuery = '';
+
+    const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    function formatBytes(bytes) {
+      if (!bytes || isNaN(bytes)) return '';
+      const units = ['B', 'KB', 'MB', 'GB'];
+      let i = 0;
+      let val = bytes;
+      while (val >= 1024 && i < units.length - 1) {
+        val /= 1024;
+        i++;
+      }
+      return `${val.toFixed(1)} ${units[i]}`;
+    }
+
+    async function loadStats() {
+      try {
+        const res = await fetch('/api/stats');
+        const { totals: t } = await res.json();
+        $('#statSubjects').textContent = t.subjects || 0;
+        $('#statFiles').textContent = t.resources || 0;
+        $('#statPdfs').textContent = t.pdf || 0;
+        $('#statPpts').textContent = t.ppt || 0;
+        $('#statNotes').textContent = t.notes || 0;
+        $('#statDownloads').textContent = t.downloads || 0;
+      } catch (err) {
+        console.error('Stats load error:', err);
+      }
+    }
+
+    async function loadData() {
+      try {
+        const [subRes, recRes] = await Promise.all([
+          fetch('/api/subjects'),
+          fetch('/api/resources')
+        ]);
+        allSubjects = await subRes.json();
+        allResources = await recRes.json();
+        render();
+      } catch (err) {
+        console.error('Data load error:', err);
+        $('#filesGrid').innerHTML = '<div class="empty-state"><div class="empty-icon">⚠️</div><h3>Failed to load resources</h3><p>Please check if the backend server is running.</p></div>';
+      }
+    }
+
+    function renderFolders() {
+      let filtered = allSubjects;
+      if (selectedYear) {
+        filtered = filtered.filter(s => String(s.year) === String(selectedYear));
+      }
+      if (searchQuery) {
+        filtered = filtered.filter(s =>
+          (s.name && s.name.toLowerCase().includes(searchQuery)) ||
+          (s.code && s.code.toLowerCase().includes(searchQuery)) ||
+          (s.branch && s.branch.toLowerCase().includes(searchQuery))
+        );
+      }
+
+      $('#folderCount').textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        $('#folderGrid').innerHTML = '<div class="empty-state" style="padding:1.5rem;"><div class="empty-icon">📁</div><p>No subject folders found.</p></div>';
+        return;
+      }
+
+      $('#folderGrid').innerHTML = filtered.map(s => {
+        const isSelected = selectedSubjectId === s.id;
+        const total = s.total_resources || 0;
+        return `
+          <div class="folder-card ${isSelected ? 'selected' : ''}" data-subject-id="${s.id}">
+            <div class="folder-icon">${isSelected ? '📂' : '📁'}</div>
+            <div class="folder-info">
+              <div class="folder-title" title="${esc(s.name)}">${esc(s.name)}</div>
+              <div class="folder-meta">
+                <span>Year ${s.year} &middot; ${esc(s.code || s.branch || 'ALL')}</span>
+                <span>${total} ${total === 1 ? 'file' : 'files'}</span>
+              </div>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // Add click listener
+      document.querySelectorAll('.folder-card').forEach(el => {
+        el.addEventListener('click', () => {
+          const id = Number(el.dataset.subjectId);
+          selectedSubjectId = (selectedSubjectId === id) ? null : id;
+          render();
+        });
+      });
+    }
+
+    function renderFiles() {
+      let filtered = allResources;
+
+      if (selectedYear) {
+        filtered = filtered.filter(r => String(r.year) === String(selectedYear));
+      }
+      if (selectedType) {
+        filtered = filtered.filter(r => r.type === selectedType);
+      }
+      if (selectedSubjectId) {
+        filtered = filtered.filter(r => r.subject_id === selectedSubjectId);
+      }
+      if (searchQuery) {
+        filtered = filtered.filter(r =>
+          (r.title && r.title.toLowerCase().includes(searchQuery)) ||
+          (r.subject_name && r.subject_name.toLowerCase().includes(searchQuery)) ||
+          (r.type && r.type.toLowerCase().includes(searchQuery))
+        );
+      }
+
+      $('#filesCount').textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        $('#filesGrid').innerHTML = `
+          <div class="empty-state">
+            <div class="empty-icon">📄</div>
+            <h3>No files found</h3>
+            <p>Try clearing filters or search query to view other course resources.</p>
+          </div>
+        `;
+        return;
+      }
+
+      $('#filesGrid').innerHTML = filtered.map(r => {
+        const typeCls = ['pdf', 'ppt', 'notes'].includes(r.type) ? r.type : 'other';
+        const sizeStr = r.size_bytes ? ` &middot; ${formatBytes(r.size_bytes)}` : '';
+        return `
+          <div class="file-card">
+            <div class="file-top">
+              <div class="file-type-badge ${typeCls}">${r.type}</div>
+              <div class="file-details">
+                <div class="file-name">${esc(r.title)}</div>
+                <div class="file-subject">${esc(r.subject_name)} &middot; Year ${r.year}${sizeStr}</div>
+              </div>
+            </div>
+            <div class="file-actions">
+              <a href="${r.url}" target="_blank" class="file-btn outline">👁️ Preview</a>
+              <a href="${r.download_url}" target="_blank" class="file-btn primary">⬇️ Download</a>
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function render() {
+      renderFolders();
+      renderFiles();
+    }
+
+    // Filter Listeners
+    $('#yearPills').addEventListener('click', (e) => {
+      const btn = e.target.closest('.pill-btn');
+      if (!btn) return;
+      $('#yearPills').querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedYear = btn.dataset.year;
+      selectedSubjectId = null; // reset folder selection
+      render();
+    });
+
+    $('#typePills').addEventListener('click', (e) => {
+      const btn = e.target.closest('.pill-btn');
+      if (!btn) return;
+      $('#typePills').querySelectorAll('.pill-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      selectedType = btn.dataset.type;
+      renderFiles();
+    });
+
+    $('#searchInput').addEventListener('input', (e) => {
+      searchQuery = e.target.value.trim().toLowerCase();
+      render();
+    });
+
+    loadStats();
+    loadData();
+  </script>
+</body>
+</html>

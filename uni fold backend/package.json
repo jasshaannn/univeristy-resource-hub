@@ -1,0 +1,24 @@
+{
+  "name": "uni-resources-backend",
+  "version": "1.0.0",
+  "description": "Backend for the university resources site: year-wise PDFs, PPTs, notes, timetable links and society handles",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "node --watch src/server.js",
+    "seed": "node scripts/seed.js",
+    "seed:societies": "node scripts/seed-societies.js",
+    "sync": "node scripts/sync-drive.js",
+    "sync:db": "node scripts/sync-drive.js --sync-db"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.5.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.21.0",
+    "multer": "^2.4.0"
+  }
+}

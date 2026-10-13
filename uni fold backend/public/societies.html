@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TIET Student Societies | University Resource Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f19;
+      --card-bg: rgba(22, 28, 45, 0.75);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --accent: #e11d48;
+      --accent-gradient: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);
+      --ig-gradient: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      --tag-bg: rgba(255, 255, 255, 0.06);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background-color: var(--bg);
+      background-image:
+        radial-gradient(at 0% 0%, rgba(225, 29, 72, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(99, 102, 241, 0.12) 0px, transparent 50%);
+      background-attachment: fixed;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 2rem 1.5rem 4rem;
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+    }
+
+    .nav-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--card-border);
+    }
+
+    .nav-brand {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-decoration: none;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.4rem 0.8rem;
+      border-radius: 8px;
+      transition: all 0.2s;
+    }
+
+    .nav-link:hover, .nav-link.active {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .badge-official {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(225, 29, 72, 0.15);
+      color: #fb7185;
+      border: 1px solid rgba(225, 29, 72, 0.3);
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .subtitle {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .official-link {
+      color: #38bdf8;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .controls {
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+      margin-bottom: 2rem;
+    }
+
+    .search-wrapper {
+      position: relative;
+      max-width: 600px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.25rem 1rem 3rem;
+      font-size: 1rem;
+      font-family: inherit;
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      backdrop-filter: blur(12px);
+      transition: all 0.2s ease;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: #f43f5e;
+      box-shadow: 0 0 0 4px rgba(244, 63, 94, 0.15);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 1.1rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--text-muted);
+      width: 20px;
+      height: 20px;
+    }
+
+    .filter-chips {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .chip {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid var(--card-border);
+      color: var(--text-muted);
+      padding: 0.45rem 0.9rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .chip:hover {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--text);
+    }
+
+    .chip.active {
+      background: var(--accent-gradient);
+      border-color: transparent;
+      color: white;
+      font-weight: 600;
+    }
+
+    .stats-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-bottom: 1.5rem;
+      padding: 0 0.5rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+      backdrop-filter: blur(12px);
+    }
+
+    .card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(244, 63, 94, 0.35);
+      box-shadow: 0 16px 32px rgba(0, 0, 0, 0.35);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .avatar-wrapper {
+      position: relative;
+      width: 58px;
+      height: 58px;
+      min-width: 58px;
+      border-radius: 50%;
+      padding: 2px;
+      background: var(--ig-gradient);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+
+    .avatar-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #1e293b;
+      display: block;
+    }
+
+    .card-title-group {
+      overflow: hidden;
+      flex: 1;
+    }
+
+    .card-name {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .card-handle {
+      font-size: 0.85rem;
+      color: #fb7185;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 4px;
+    }
+
+    .card-handle:hover {
+      text-decoration: underline;
+    }
+
+    .card-category {
+      display: inline-block;
+      background: var(--tag-bg);
+      border: 1px solid var(--card-border);
+      color: #cbd5e1;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 0.25rem 0.65rem;
+      border-radius: 6px;
+      margin-bottom: 0.85rem;
+      width: fit-content;
+    }
+
+    .card-desc {
+      font-size: 0.88rem;
+      color: #94a3b8;
+      line-height: 1.5;
+      margin-bottom: 1.25rem;
+      flex-grow: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      gap: 0.75rem;
+      margin-top: auto;
+    }
+
+    .ig-btn {
+      flex: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--ig-gradient);
+      color: white;
+      text-decoration: none;
+      font-size: 0.88rem;
+      font-weight: 600;
+      padding: 0.65rem 1rem;
+      border-radius: 10px;
+      transition: opacity 0.2s, transform 0.15s;
+    }
+
+    .ig-btn:hover {
+      opacity: 0.92;
+      transform: translateY(-1px);
+    }
+
+    .copy-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid var(--card-border);
+      color: var(--text);
+      padding: 0.65rem 0.85rem;
+      border-radius: 10px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: background 0.15s;
+      font-family: inherit;
+    }
+
+    .copy-btn:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
+    .empty-state {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 4rem 1rem;
+      color: var(--text-muted);
+    }
+
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 1.25rem 1rem 3rem; }
+      .nav-bar { flex-direction: column; align-items: stretch; gap: 0.75rem; margin-bottom: 1.5rem; }
+      .nav-brand { justify-content: center; }
+      .nav-links { justify-content: center; flex-wrap: wrap; gap: 0.5rem; }
+      .nav-link { padding: 0.4rem 0.7rem; font-size: 0.85rem; }
+      h1 { font-size: 2rem; }
+      .subtitle { font-size: 0.95rem; }
+      .search-input { font-size: 16px; padding: 0.85rem 1rem 0.85rem 2.8rem; } /* Prevents iOS auto-zoom */
+      .search-icon { left: 0.9rem; }
+      .filter-chips { gap: 0.4rem; }
+      .chip { padding: 0.45rem 0.8rem; font-size: 0.8rem; }
+      .stats-bar { font-size: 0.82rem; }
+    }
+
+    @media (max-width: 580px) {
+      .grid { grid-template-columns: 1fr; }
+      .card { padding: 1.2rem; }
+      .avatar-wrapper { width: 50px; height: 50px; min-width: 50px; }
+      .card-name { font-size: 1.05rem; }
+      .card-footer { gap: 0.5rem; }
+      .ig-btn, .copy-btn { min-height: 42px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="nav-bar">
+      <a href="/timetable" class="nav-brand">
+        🏛️ University Resource Hub
+      </a>
+      <div class="nav-links">
+        <a href="/timetable" class="nav-link">Timetable</a>
+        <a href="/resources" class="nav-link">Resources</a>
+        <a href="/societies" class="nav-link active">Societies</a>
+        <a href="/admin" class="nav-link">Admin</a>
+      </div>
+    </nav>
+
+    <header>
+      <div class="badge-official">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z"/></svg>
+        Followed by @tietofficial Directory
+      </div>
+      <h1>TIET Student Societies</h1>
+      <p class="subtitle">
+        Directory of all student chapters, clubs, and technical societies followed by TIET official (<a href="https://www.instagram.com/tietofficial/" target="_blank" rel="noopener" class="official-link">@tietofficial</a>).
+      </p>
+    </header>
+
+    <div class="controls">
+      <div class="search-wrapper">
+        <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.35-4.35"></path></svg>
+        <input type="text" id="searchInput" class="search-input" placeholder="Search society name, handle, or category...">
+      </div>
+
+      <div class="filter-chips" id="filterChips">
+        <button class="chip active" data-category="ALL">All Societies</button>
+      </div>
+    </div>
+
+    <div class="stats-bar">
+      <span id="resultCount">Loading societies...</span>
+      <span>Click any card to open Instagram</span>
+    </div>
+
+    <div class="grid" id="societyGrid"></div>
+  </div>
+
+  <script>
+    let allSocieties = [];
+    let activeCategory = 'ALL';
+    let searchQuery = '';
+
+    const grid = document.getElementById('societyGrid');
+    const searchInput = document.getElementById('searchInput');
+    const filterChips = document.getElementById('filterChips');
+    const resultCount = document.getElementById('resultCount');
+
+    async function loadData() {
+      try {
+        // Try backend API first, fallback to static JSON
+        let res = await fetch('/api/societies');
+        if (!res.ok) throw new Error('API failed');
+        allSocieties = await res.json();
+      } catch (e) {
+        try {
+          let res = await fetch('/data/societies.json');
+          allSocieties = await res.json();
+        } catch (err) {
+          console.error('Failed to load societies', err);
+        }
+      }
+
+      initCategories();
+      render();
+    }
+
+    function initCategories() {
+      const cats = Array.from(new Set(allSocieties.map(s => s.category).filter(Boolean))).sort();
+      cats.forEach(cat => {
+        const btn = document.createElement('button');
+        btn.className = 'chip';
+        btn.dataset.category = cat;
+        btn.textContent = cat;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+          btn.classList.add('active');
+          activeCategory = cat;
+          render();
+        });
+        filterChips.appendChild(btn);
+      });
+
+      filterChips.querySelector('[data-category="ALL"]').addEventListener('click', (e) => {
+        document.querySelectorAll('.chip').forEach(c => c.classList.remove('active'));
+        e.target.classList.add('active');
+        activeCategory = 'ALL';
+        render();
+      });
+    }
+
+    function render() {
+      let list = allSocieties;
+
+      if (activeCategory !== 'ALL') {
+        list = list.filter(s => s.category === activeCategory);
+      }
+
+      if (searchQuery.trim()) {
+        const q = searchQuery.toLowerCase().trim();
+        list = list.filter(s =>
+          (s.name && s.name.toLowerCase().includes(q)) ||
+          (s.instagram && s.instagram.toLowerCase().includes(q)) ||
+          (s.category && s.category.toLowerCase().includes(q)) ||
+          (s.description && s.description.toLowerCase().includes(q))
+        );
+      }
+
+      resultCount.textContent = `Showing ${list.length} societ${list.length === 1 ? 'y' : 'ies'}`;
+
+      if (list.length === 0) {
+        grid.innerHTML = `
+          <div class="empty-state">
+            <h3>No societies found matching "${searchQuery}"</h3>
+            <p>Try searching with another keyword.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = list.map(s => {
+        const instagramUrl = s.instagram ? (s.instagram.startsWith('http') ? s.instagram : `https://www.instagram.com/${s.instagram.replace('@', '')}/`) : '#';
+        const handle = s.handle || (s.instagram ? (s.instagram.startsWith('http') ? '@' + s.instagram.split('/').filter(Boolean).pop() : s.instagram) : '');
+        const fallback = `https://ui-avatars.com/api/?name=${encodeURIComponent(s.name)}&background=1e293b&color=ffffff&size=256&bold=true`;
+        const logo = s.logo_url || s.profilePhoto || fallback;
+
+        return `
+          <div class="card">
+            <div class="card-header">
+              <div class="avatar-wrapper">
+                <img
+                  class="avatar-img"
+                  src="${logo}"
+                  alt="${s.name}"
+                  loading="lazy"
+                  onerror="this.onerror=null; this.src='${fallback}';"
+                >
+              </div>
+              <div class="card-title-group">
+                <div class="card-name">${s.name}</div>
+                ${handle ? `<a class="card-handle" href="${instagramUrl}" target="_blank" rel="noopener">${handle}</a>` : ''}
+              </div>
+            </div>
+
+            ${s.category ? `<div class="card-category">${s.category}</div>` : ''}
+            <div class="card-desc">${s.description || 'Active student society/chapter at Thapar Institute.'}</div>
+
+            <div class="card-footer">
+              <a href="${instagramUrl}" target="_blank" rel="noopener" class="ig-btn">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+                Instagram
+              </a>
+              ${handle ? `<button class="copy-btn" onclick="copyHandle('${handle}', this)">Copy</button>` : ''}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function copyHandle(handle, btn) {
+      navigator.clipboard.writeText(handle).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      });
+    }
+
+    searchInput.addEventListener('input', (e) => {
+      searchQuery = e.target.value;
+      render();
+    });
+
+    loadData();
+  </script>
+</body>
+</html>

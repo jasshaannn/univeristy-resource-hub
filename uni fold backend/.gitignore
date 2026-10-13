@@ -1,0 +1,26 @@
+# Dependencies
+node_modules/
+
+# Environment Variables & Secrets (CRITICAL: Never commit .env)
+.env
+.env.*
+!.env.example
+*.env.local
+
+# SQLite Database files (contains dynamic data & admin credentials)
+data/*.db
+data/*.db-shm
+data/*.db-wal
+*.sqlite
+*.db
+
+# Uploaded student files
+uploads/*
+!uploads/.gitkeep
+
+# System & Logs
+.DS_Store
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*

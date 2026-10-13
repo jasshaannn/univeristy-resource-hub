@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Timetable | University Resource Hub</title>
+  <link rel="stylesheet" href="/timetable.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="mark">TT</div>
+      <div>
+        <h1>Campus Timetable</h1>
+        <span class="sub">University Resource Hub</span>
+      </div>
+    </div>
+
+    <div class="controls">
+      <div class="field">
+        <label for="yearSelect">Year</label>
+        <select id="yearSelect"></select>
+      </div>
+
+      <div class="field">
+        <label for="branchSelect">Branch</label>
+        <select id="branchSelect"></select>
+      </div>
+
+      <div class="field">
+        <label for="batchSelect">Batch</label>
+        <select id="batchSelect"></select>
+      </div>
+
+      <div class="field">
+        <label for="searchInput">Quick find</label>
+        <input type="text" id="searchInput" placeholder="e.g. 1A11, 2Q35" autocomplete="off">
+      </div>
+    </div>
+
+    <div class="top-actions">
+      <a href="/resources" class="action-btn">📁 Resources</a>
+      <a href="/societies" class="action-btn">🏛️ Societies</a>
+      <a href="/admin" class="action-btn">⚙️ Admin</a>
+    </div>
+  </header>
+
+  <main>
+    <div class="meta-row">
+      <div class="batch-meta" id="batchMeta"></div>
+      <div class="meta-tools">
+        <button id="calendarBtn" type="button" class="action-btn primary">📅 Sync to Calendar</button>
+        <button id="shareBtn" type="button" class="action-btn">🔗 Share Link</button>
+        <button id="printBtn" type="button" class="action-btn">🖨️ Print / PDF</button>
+      </div>
+    </div>
+
+    <!-- View Switcher & Day Navigation Bar -->
+    <div class="view-controls-bar" id="viewControlsBar">
+      <div class="view-switch-tabs" role="tablist" aria-label="Timetable view switcher">
+        <button type="button" class="view-tab-btn active" id="viewDayBtn" data-view="day" role="tab" aria-selected="true">
+          <span class="tab-icon">📋</span>
+          <span class="tab-label">Day View</span>
+        </button>
+        <button type="button" class="view-tab-btn" id="viewWeekBtn" data-view="week" role="tab" aria-selected="false">
+          <span class="tab-icon">📅</span>
+          <span class="tab-label">Week Grid</span>
+        </button>
+      </div>
+
+      <div class="day-nav-bar" id="dayNavBar">
+        <button type="button" class="day-arrow-btn" id="prevDayBtn" title="Previous Day" aria-label="Previous day">‹</button>
+        <div class="day-pills-wrap" id="dayPillsWrap">
+          <div class="day-pills" id="dayPills"></div>
+        </div>
+        <button type="button" class="day-arrow-btn" id="nextDayBtn" title="Next Day" aria-label="Next day">›</button>
+      </div>
+    </div>
+
+    <div class="legend" id="legend">
+      <div class="legend-item"><span class="legend-dot lecture"></span>Lecture</div>
+      <div class="legend-item"><span class="legend-dot practical"></span>Practical / Lab</div>
+      <div class="legend-item"><span class="legend-dot tutorial"></span>Tutorial</div>
+      <div class="legend-item"><span class="legend-dot elective"></span>Elective</div>
+      <div class="legend-item"><span class="legend-dot other"></span>Other</div>
+    </div>
+
+    <!-- Shared Empty State for when no batch selected -->
+    <div class="empty-state" id="emptyState">
+      <div class="glyph">📅</div>
+      <h3>No batch selected</h3>
+      <p>Choose a year, branch, and batch from above or type your batch code to view your schedule.</p>
+    </div>
+
+    <!-- Day-Wise View Container -->
+    <div class="day-view-container" id="dayViewContainer">
+      <div class="day-header-card" id="dayHeaderCard"></div>
+      <div class="day-timeline" id="dayTimeline"></div>
+    </div>
+
+    <!-- Week Grid View Container -->
+    <div class="week-view-container" id="weekViewContainer" style="display: none;">
+      <div class="swipe-hint" id="swipeHint">
+        <span>👈 Swipe horizontally to see full week schedule 👉</span>
+      </div>
+      <div class="grid-wrap">
+        <div id="grid"></div>
+      </div>
+    </div>
+
+    <!-- Sync to Calendar Modal -->
+    <div class="modal-backdrop" id="calendarModal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <div class="modal-card">
+        <div class="modal-head">
+          <div class="modal-head-title">
+            <h3 id="modalTitle">Sync Timetable to Calendar</h3>
+            <span class="modal-batch-tag" id="modalBatchTag">Batch Schedule</span>
+          </div>
+          <button type="button" class="modal-close-btn" id="closeCalendarModal" aria-label="Close modal">&times;</button>
+        </div>
+
+        <div class="modal-body">
+          <p class="modal-desc">
+            Sync your weekly classes with recurring notifications so you never miss a lecture, lab, or tutorial!
+          </p>
+
+          <div class="cal-options-grid">
+            <!-- Apple / iOS Calendar Option -->
+            <div class="cal-option-card apple-card">
+              <div class="cal-option-header">
+                <span class="cal-icon"></span>
+                <div>
+                  <h4>Apple / iOS Calendar</h4>
+                  <span class="cal-sub">iPhone, iPad &amp; Mac</span>
+                </div>
+              </div>
+              <p class="cal-instruction">
+                Subscribes with live updates and 15-minute class alerts directly in the native iOS Calendar app.
+              </p>
+              <div class="cal-actions">
+                <a id="appleSubscribeBtn" href="#" class="cal-btn primary apple">
+                  <span>📱 1-Tap Subscribe on Apple / iOS</span>
+                </a>
+                <a id="appleDownloadBtn" href="#" class="cal-btn outline">
+                  <span>📥 Download .ics File</span>
+                </a>
+              </div>
+              <div class="cal-tip">
+                💡 <strong>Tip on iPhone:</strong> Tap "1-Tap Subscribe" or download the .ics and tap <em>"Add All"</em> to save every class!
+              </div>
+            </div>
+
+            <!-- Google Calendar Option -->
+            <div class="cal-option-card google-card">
+              <div class="cal-option-header">
+                <span class="cal-icon">🗓️</span>
+                <div>
+                  <h4>Google Calendar</h4>
+                  <span class="cal-sub">Android, Web, Windows &amp; Mac</span>
+                </div>
+              </div>
+              <p class="cal-instruction">
+                Automatically import your recurring weekly classes or subscribe to live schedule updates.
+              </p>
+              <div class="cal-actions">
+                <a id="googleSubscribeBtn" href="#" target="_blank" rel="noopener noreferrer" class="cal-btn primary google">
+                  <span>🌐 1-Click Add to Google Calendar</span>
+                </a>
+                <a id="googleImportSettingsBtn" href="https://calendar.google.com/calendar/u/0/r/settings/export" target="_blank" rel="noopener noreferrer" class="cal-btn outline">
+                  <span>📂 Open Google Calendar Import Page</span>
+                </a>
+              </div>
+              <div class="cal-tip">
+                💡 <strong>Tip:</strong> You can also download the <strong>.ics file</strong> and drag it into Google Calendar Settings &rarr; Import.
+              </div>
+            </div>
+
+            <!-- Calendar Subscription Feed URL -->
+            <div class="cal-feed-box">
+              <label for="calFeedInput">Direct Calendar Feed / WebCal URL (Outlook, Notion, Thunderbird):</label>
+              <div class="cal-feed-input-group">
+                <input type="text" id="calFeedInput" readonly>
+                <button type="button" class="action-btn primary" id="copyCalFeedBtn">📋 Copy Feed URL</button>
+              </div>
+              <span class="cal-feed-hint">Works with any calendar client that supports iCalendar / WebCal feeds.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    Campus Resource Hub &middot; Interactive Timetable System &middot; Verify against official academic notices
+  </footer>
+
+  <script src="/timetable.js"></script>
+</body>
+</html>

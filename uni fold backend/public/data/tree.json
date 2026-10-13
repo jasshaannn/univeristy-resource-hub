@@ -1,0 +1,285 @@
+{
+  "id": "1_Trg4SuokK5TVUA6JKE0PVL1lGvC-S2U",
+  "name": "university resources",
+  "type": "folder",
+  "path": "",
+  "children": {
+    "Year 1": {
+      "id": "14UDDpf9jkux7xxp9kV2jkj2DPVXGjl82",
+      "name": "Year 1",
+      "type": "folder",
+      "path": "Year 1",
+      "children": {
+        "BioTechnology": {
+          "id": "1JBbVw6dtUO6ITmBH3bnitXUzYj0N6NLK",
+          "name": "BioTechnology",
+          "type": "folder",
+          "path": "Year 1/BioTechnology",
+          "children": {
+            "Biotechnology-I_UBT009": {
+              "id": "1AC75SaZDzN5IT4r7Oq8WAXxy7egdIHDq",
+              "name": "Biotechnology-I_UBT009",
+              "type": "folder",
+              "path": "Year 1/BioTechnology/Biotechnology-I_UBT009",
+              "children": {}
+            },
+            "Cell Biology and Genetics_UBT008": {
+              "id": "1CSca6fXRurlvh8EuVDOXkzxLPNEbYdzZ",
+              "name": "Cell Biology and Genetics_UBT008",
+              "type": "folder",
+              "path": "Year 1/BioTechnology/Cell Biology and Genetics_UBT008",
+              "children": {}
+            },
+            "Microbiology_UBT202": {
+              "id": "1qmTo7C2MZNzm-Hho0CaX_xLq8b_MlCCS",
+              "name": "Microbiology_UBT202",
+              "type": "folder",
+              "path": "Year 1/BioTechnology/Microbiology_UBT202",
+              "children": {}
+            }
+          }
+        },
+        "Computer Science and Business systems": {
+          "id": "1DwiBEFPrhLrQaESjGwoC8WwksioWd6oZ",
+          "name": "Computer Science and Business systems",
+          "type": "folder",
+          "path": "Year 1/Computer Science and Business systems",
+          "children": {
+            "DATA STRUCTURES AND ALGORITHMS_UCT203": {
+              "id": "1JoQkbFBoJ6GYt-i8gsFzv7aeBGPPzhf0",
+              "name": "DATA STRUCTURES AND ALGORITHMS_UCT203",
+              "type": "folder",
+              "path": "Year 1/Computer Science and Business systems/DATA STRUCTURES AND ALGORITHMS_UCT203",
+              "children": {}
+            },
+            "PRINCIPLES OF ELECTRONICS_UEC002": {
+              "id": "13FIph-u063Th_jYYNdQTia3oSNEbRbqu",
+              "name": "PRINCIPLES OF ELECTRONICS_UEC002",
+              "type": "folder",
+              "path": "Year 1/Computer Science and Business systems/PRINCIPLES OF ELECTRONICS_UEC002",
+              "children": {}
+            },
+            "PROBABILITY & STATISTICS_UCT102": {
+              "id": "15I7D6CuYZf1MG9TGC9QGbnXwgyCK2qV8",
+              "name": "PROBABILITY & STATISTICS_UCT102",
+              "type": "folder",
+              "path": "Year 1/Computer Science and Business systems/PROBABILITY & STATISTICS_UCT102",
+              "children": {}
+            }
+          }
+        },
+        "Data Science and AI": {
+          "id": "1sjavm9WvkChkKdtpHJLYOMwt-nnwUKw6",
+          "name": "Data Science and AI",
+          "type": "folder",
+          "path": "Year 1/Data Science and AI",
+          "children": {
+            "Foundation of Machine Learning_UAI201": {
+              "id": "1r6mUh9gg0jEvu1VkMlWTcCODIvEHljCg",
+              "name": "Foundation of Machine Learning_UAI201",
+              "type": "folder",
+              "path": "Year 1/Data Science and AI/Foundation of Machine Learning_UAI201",
+              "children": {}
+            },
+            "Programming Essentials ML_UCS102": {
+              "id": "1qvcHRlvsYtDIUGwTVuAQ1KAZL85atbHE",
+              "name": "Programming Essentials ML_UCS102",
+              "type": "folder",
+              "path": "Year 1/Data Science and AI/Programming Essentials ML_UCS102",
+              "children": {}
+            }
+          }
+        },
+        "Pool A": {
+          "id": "18iNfpgaIvboIYjuAipOT5ApTFwMM0XTZ",
+          "name": "Pool A",
+          "type": "folder",
+          "path": "Year 1/Pool A",
+          "children": {
+            "Chemistry_UCB009": {
+              "id": "1I6KT-qlan8GxZcVGAHxFR_pmEy4Mcso-",
+              "name": "Chemistry_UCB009",
+              "type": "folder",
+              "path": "Year 1/Pool A/Chemistry_UCB009",
+              "children": {}
+            },
+            "Electrical & Electronics  Engineering_UES013": {
+              "id": "1GQ-uTB-_BydEKsF-RZWiLQMAj_RXVwbW",
+              "name": "Electrical & Electronics  Engineering_UES013",
+              "type": "folder",
+              "path": "Year 1/Pool A/Electrical & Electronics  Engineering_UES013",
+              "children": {}
+            },
+            "Energy and Environment_UEN008": {
+              "id": "1FeRY1iX4FVQTPXOHcrexg2ekOGtHagGS",
+              "name": "Energy and Environment_UEN008",
+              "type": "folder",
+              "path": "Year 1/Pool A/Energy and Environment_UEN008",
+              "children": {}
+            }
+          }
+        },
+        "Pool B": {
+          "id": "1a2wGtVNTDkWD74Jss5rZuVhl2QFDxBPy",
+          "name": "Pool B",
+          "type": "folder",
+          "path": "Year 1/Pool B",
+          "children": {
+            "Engineering Drawing_UES101": {
+              "id": "1jL6U4SHnYmNhBsnPYbUR76H4MzqFeUui",
+              "name": "Engineering Drawing_UES101",
+              "type": "folder",
+              "path": "Year 1/Pool B/Engineering Drawing_UES101",
+              "children": {}
+            },
+            "Manufacturing Processes_UES102": {
+              "id": "1Vy3PPOvKQv6SILJQycSEgvgmhjGEx_9f",
+              "name": "Manufacturing Processes_UES102",
+              "type": "folder",
+              "path": "Year 1/Pool B/Manufacturing Processes_UES102",
+              "children": {}
+            },
+            "Physics_UPH013": {
+              "id": "1kLGjQ38lrf6MLs7S6QiiMs9X8j1zu1N8",
+              "name": "Physics_UPH013",
+              "type": "folder",
+              "path": "Year 1/Pool B/Physics_UPH013",
+              "children": {}
+            },
+            "Professional Communication_UHU003": {
+              "id": "1bNzmduwSaQEXI90m7SghBY8ocWO1dK0c",
+              "name": "Professional Communication_UHU003",
+              "type": "folder",
+              "path": "Year 1/Pool B/Professional Communication_UHU003",
+              "children": {}
+            }
+          }
+        }
+      }
+    },
+    "Year 2": {
+      "id": "1K9ahyZYAAyGX1RYnXP9Bp4d-VoGLsrSK",
+      "name": "Year 2",
+      "type": "folder",
+      "path": "Year 2",
+      "children": {
+        "BioTechnology": {
+          "id": "1KYbr7YrVI9KZ0s1LVUFzdCS184WrhRP_",
+          "name": "BioTechnology",
+          "type": "folder",
+          "path": "Year 2/BioTechnology",
+          "children": {
+            "Immunotechnology_UBT309": {
+              "id": "1WqorNYwMVSQReFy4qf5kxFgY5BhHgsUv",
+              "name": "Immunotechnology_UBT309",
+              "type": "folder",
+              "path": "Year 2/BioTechnology/Immunotechnology_UBT309",
+              "children": {}
+            }
+          }
+        },
+        "Computer Engineering": {
+          "id": "1UNFzy1y_Fzq9Zs164AUpdXxnLDHdgHf6",
+          "name": "Computer Engineering",
+          "type": "folder",
+          "path": "Year 2/Computer Engineering",
+          "children": {
+            "Database Management Systems_UCS310": {
+              "id": "1aWcMAeBk753JbjNmPqVdhzLmmw9IjsVr",
+              "name": "Database Management Systems_UCS310",
+              "type": "folder",
+              "path": "Year 2/Computer Engineering/Database Management Systems_UCS310",
+              "children": {}
+            },
+            "Design and Analysis of Algorithms_UCS415": {
+              "id": "1fR90boMC7WBxCfKYkt6eUAU2v9m9BKyW",
+              "name": "Design and Analysis of Algorithms_UCS415",
+              "type": "folder",
+              "path": "Year 2/Computer Engineering/Design and Analysis of Algorithms_UCS415",
+              "children": {}
+            },
+            "Discrete Maths_UCS405": {
+              "id": "1TvzofwrMmLzlwh20v-czmQBcZyg-7lCb",
+              "name": "Discrete Maths_UCS405",
+              "type": "folder",
+              "path": "Year 2/Computer Engineering/Discrete Maths_UCS405",
+              "children": {}
+            },
+            "Operating System_UCS303": {
+              "id": "1LqYYgb2xlWd-L3BzwnObgOJTqftaMWYY",
+              "name": "Operating System_UCS303",
+              "type": "folder",
+              "path": "Year 2/Computer Engineering/Operating System_UCS303",
+              "children": {}
+            }
+          }
+        },
+        "Computer Science & Engineering": {
+          "id": "1zYTp-nj7ZZfkmTk4FrO-gvx9WUTOvs3G",
+          "name": "Computer Science & Engineering",
+          "type": "folder",
+          "path": "Year 2/Computer Science & Engineering",
+          "children": {
+            "Database Management Systems_UCS310": {
+              "id": "1KdbrQPfKC4ujNOdwSEbzOM45lua5U1uD",
+              "name": "Database Management Systems_UCS310",
+              "type": "folder",
+              "path": "Year 2/Computer Science & Engineering/Database Management Systems_UCS310",
+              "children": {}
+            },
+            "Design and Analysis of Algorithms_UCS415": {
+              "id": "1F8pFtyfNCO4EFvOJXIJ8rlJIKPoGpjYL",
+              "name": "Design and Analysis of Algorithms_UCS415",
+              "type": "folder",
+              "path": "Year 2/Computer Science & Engineering/Design and Analysis of Algorithms_UCS415",
+              "children": {}
+            },
+            "Discrete Maths_UCS405": {
+              "id": "1RjubL-ZT5kLExIn9mczHrWzfNrvDuRna",
+              "name": "Discrete Maths_UCS405",
+              "type": "folder",
+              "path": "Year 2/Computer Science & Engineering/Discrete Maths_UCS405",
+              "children": {}
+            },
+            "Operating System_UCS303": {
+              "id": "1fFSJUj00gaLmVU1nWxxxDgQufvK21xlN",
+              "name": "Operating System_UCS303",
+              "type": "folder",
+              "path": "Year 2/Computer Science & Engineering/Operating System_UCS303",
+              "children": {}
+            }
+          }
+        },
+        "Computer Science and Business systems": {
+          "id": "1pmqn7sOe4uc-KEFO40toQV85I0sGQkfr",
+          "name": "Computer Science and Business systems",
+          "type": "folder",
+          "path": "Year 2/Computer Science and Business systems",
+          "children": {
+            "DBMS_UCT402": {
+              "id": "1WoGp7tUhLpDOQVeUu-tTWiKf007f7UIC",
+              "name": "DBMS_UCT402",
+              "type": "folder",
+              "path": "Year 2/Computer Science and Business systems/DBMS_UCT402",
+              "children": {}
+            },
+            "INTRODUCTION TO INNOVATION, IP MANAGEMENT AND ENTREPRENEURSHIP_UHU023": {
+              "id": "1gAIjyNXItJvdRLhEUBTvk6Uf69TH96P8",
+              "name": "INTRODUCTION TO INNOVATION, IP MANAGEMENT AND ENTREPRENEURSHIP_UHU023",
+              "type": "folder",
+              "path": "Year 2/Computer Science and Business systems/INTRODUCTION TO INNOVATION, IP MANAGEMENT AND ENTREPRENEURSHIP_UHU023",
+              "children": {}
+            },
+            "Operations Research_UMA019": {
+              "id": "1OIFZeCmi9ybm7bC4w4fXdOkvi0KHWACR",
+              "name": "Operations Research_UMA019",
+              "type": "folder",
+              "path": "Year 2/Computer Science and Business systems/Operations Research_UMA019",
+              "children": {}
+            }
+          }
+        }
+      }
+    }
+  }
+}
